@@ -1,0 +1,8 @@
+:root{
+--font-display:'Sora',ui-sans-serif,system-ui,sans-serif;--font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+--text-display-2xl:4.5rem;--text-display-xl:3.375rem;--text-display-lg:2.5rem;--text-heading-lg:2rem;--text-heading-md:1.5rem;--text-heading-sm:1.25rem;
+--text-body-lg:1.125rem;--text-body-md:1rem;--text-body-sm:0.875rem;--text-label:0.8125rem;
+--lh-tight:1.08;/* @kind other */--lh-snug:1.25;/* @kind other */--lh-normal:1.5;/* @kind other */--lh-relaxed:1.65;/* @kind other */
+--tracking-tight:-0.02em;--tracking-normal:0;--tracking-wide:0.08em;--tracking-wider:0.16em;
+--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;--weight-extrabold:800;
+}
