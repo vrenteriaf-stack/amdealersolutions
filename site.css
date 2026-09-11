@@ -1,0 +1,807 @@
+/* AM Dealer Solutions — site shell, built on the bound brand tokens.
+   Dark system: charcoal ground, mint primary accent, ice secondary, Poppins.
+   Only what inline styles cannot express: resets, breakpoints, hover/menu
+   behaviour, reveals, and the legacy-name aliases the pages already reference. */
+
+:root{
+  /* --- Two accents. The brand has no third accent and no hue ramp, so the
+         vertical split is carried by world: Automotive = mint, Recreation = ice. --- */
+  --v-franchise:var(--am-mint);
+  --v-franchise-soft:var(--am-mint-12);
+  --v-franchise-ink:var(--am-mint);
+  --v-independent:var(--am-mint);
+  --v-independent-soft:var(--am-mint-12);
+  --v-independent-ink:var(--am-mint);
+  --v-service:var(--am-mint);
+  --v-service-soft:var(--am-mint-12);
+  --v-service-ink:var(--am-mint);
+  --v-rv:var(--am-ice);
+  --v-rv-soft:var(--am-ice-12);
+  --v-rv-ink:var(--am-ice);
+  --v-powersports:var(--am-ice);
+  --v-powersports-soft:var(--am-ice-12);
+  --v-powersports-ink:var(--am-ice);
+  --w-auto:var(--am-mint);
+  --w-rec:var(--am-ice);
+
+  /* --- Aliases so existing page markup resolves against the brand palette. --- */
+  --white:var(--am-white);
+  --charcoal-900:var(--am-charcoal-deep);
+  --charcoal-800:var(--am-charcoal-soft);
+  --charcoal-700:var(--am-white);
+  --charcoal-600:rgba(255,255,255,.86);
+  --charcoal-400:var(--am-grey-400);
+  --charcoal-300:var(--am-grey-300);
+  --charcoal-200:var(--am-grey-200);
+  --surface-alt:var(--am-charcoal-deep);
+  --border-subtle:var(--border-hairline);
+  --border-strong:rgba(255,255,255,.26);
+  --text-primary:var(--am-white);
+  --text-secondary:var(--am-grey-300);
+  --link:var(--am-mint);
+  --link-hover:var(--am-ice);
+  --font-display:var(--font-core);
+  --font-body:var(--font-core);
+  --accent-primary:var(--am-mint);
+  --sage-200:var(--am-mint-12);
+  --sage-400:var(--am-mint);
+  --sage-700:var(--am-mint);
+  --sky-200:var(--am-ice-12);
+  --sky-300:var(--am-ice);
+  --sky-700:var(--am-ice);
+  --brand-gradient:var(--am-mint);
+  --nav-h:84px;
+
+  /* Legacy aliases used by the case-studies page's markup. */
+  --charcoal-50:var(--am-charcoal-deep);
+  --charcoal-100:var(--am-charcoal-soft);
+  --charcoal-500:var(--am-grey-400);
+  --sage-500:var(--am-mint);
+  --sage-600:var(--am-mint);
+  --sky-500:var(--am-ice);
+  --sky-600:var(--am-ice);
+  --brand-gradient-soft:var(--am-mint-12);
+  --amds-w:1440px;
+
+  /* Section-scoped surface vars — .lightsec overrides these. */
+  --ink:var(--am-white);
+  --ink-muted:var(--am-grey-300);
+  --ink-faint:var(--am-grey-400);
+  --card-bg:var(--am-charcoal-soft);
+  --hair:var(--border-hairline);
+  --icon-ink:var(--am-ice);
+  --icon-tile-bg:var(--am-charcoal-soft);
+  --icon-tile-ink:var(--am-mint);
+  --bar-track:rgba(255,255,255,.1);
+  --bar-before:rgba(255,255,255,.26);
+}
+
+/* Light panel. The brand allows white/pale panels inside the dark system; this
+   flips the section-scoped vars so every child follows without duplicate rules. */
+.lightsec{
+  background:var(--am-white);
+  --ink:var(--am-charcoal);
+  --ink-muted:var(--text-body-on-light);
+  --ink-faint:var(--am-grey-600);
+  --card-bg:var(--am-white);
+  --hair:var(--border-hairline-light);
+  --icon-ink:var(--am-charcoal);
+  --icon-tile-bg:var(--am-grey-100);
+  --icon-tile-ink:var(--am-charcoal);
+  --bar-track:rgba(48,49,49,.1);
+  --bar-before:rgba(48,49,49,.24);
+}
+.lightsec a{color:var(--am-charcoal);}
+.lightsec a:hover{color:var(--am-grey-600);}
+
+body{margin:0;background:var(--am-charcoal-deep);font-family:var(--font-core);color:var(--am-white);-webkit-font-smoothing:antialiased;}
+*{box-sizing:border-box;}
+a{color:var(--am-mint);text-decoration:none;transition:color var(--dur-base) var(--ease-standard);}
+a:hover{color:var(--am-ice);}
+img{max-width:100%;}
+p{text-wrap:pretty;}
+
+.shell{container-type:inline-size;container-name:page;overflow-x:clip;}
+.wrap{max-width:1240px;margin:0 auto;padding:0 64px;}
+.wrap-n{max-width:1440px;margin:0 auto;padding:0 64px;}
+.sec{padding:96px 0;}
+.sec-s{padding:64px 0;}
+/* Charcoal ground everywhere; .alt is the deeper alternating panel. */
+.alt,.dark{background:var(--am-charcoal-deep);}
+.deep{background:var(--am-charcoal-deep);}
+
+/* The mint corner block — flat, square, 14px. The brand's only pure graphic. */
+.accent-bar{display:block;width:56px;height:var(--accent-bar);background:var(--am-mint);}
+
+.eyebrow{font-size:var(--fs-eyebrow);line-height:var(--lh-eyebrow);font-weight:var(--fw-semibold);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--am-mint);margin:0 0 18px;}
+.h1{font-size:clamp(40px,5.4vw,var(--fs-display-1));line-height:var(--lh-display-1);letter-spacing:var(--ls-display);font-weight:var(--fw-bold);margin:0;color:var(--ink);}
+.h2{font-size:clamp(30px,3.6vw,var(--fs-display-3));line-height:var(--lh-display-3);letter-spacing:var(--ls-display);font-weight:var(--fw-bold);margin:0;color:var(--ink);}
+.h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-display);font-weight:var(--fw-semibold);margin:0;color:var(--ink);}
+.h4{font-size:var(--fs-h4);line-height:var(--lh-h4);font-weight:var(--fw-semibold);margin:0;color:var(--ink);}
+/* Two-weight headline: light lead in ice, bold emphasis in white. */
+.lead{font-weight:var(--fw-light);color:var(--am-ice);}
+.lede{font-size:var(--fs-body-lg);line-height:var(--lh-body-lg);color:var(--ink-muted);margin:0;}
+.body{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--ink-muted);margin:0;}
+.num{font-family:var(--font-numeric);font-weight:var(--fw-extrabold);letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink);}
+
+.grid{display:grid;gap:32px;}
+.g2{grid-template-columns:repeat(2,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g4{grid-template-columns:repeat(4,1fr);}
+.g5{grid-template-columns:repeat(5,1fr);}
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;}
+
+.card{background:var(--card-bg);border:1px solid var(--hair);border-radius:var(--radius-md);padding:32px;transition:var(--transition-interactive),box-shadow var(--dur-base) var(--ease-standard);}
+.lift:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.photo{border-radius:var(--radius-photo);overflow:hidden;box-shadow:var(--shadow-photo);}
+.photo img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.85);}
+
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 30px;border-radius:var(--radius-pill);font-family:var(--font-core);font-size:var(--fs-body-sm);font-weight:var(--fw-semibold);letter-spacing:var(--ls-label);text-transform:uppercase;border:0;cursor:pointer;transition:var(--transition-interactive);}
+.btn:active{transform:scale(.98);}
+.btn-p,.btn-l{background:var(--am-mint);color:var(--am-charcoal);}
+.btn-p:hover,.btn-l:hover{background:var(--action-primary-bg-hover);color:var(--am-charcoal);}
+.btn-o,.btn-oc{background:transparent;color:var(--am-white);border:1px solid var(--action-secondary-border);}
+.btn-o:hover,.btn-oc:hover{border-color:var(--am-mint);color:var(--am-mint);}
+.btn-sm{height:44px;padding:0 22px;font-size:12px;}
+.btn:focus-visible,a:focus-visible,button:focus-visible,.inp:focus-visible,.chip:focus-visible{outline:2px solid var(--am-mint);outline-offset:2px;}
+
+/* Header — the one translucent surface in the system. Type treatment matches SiteHeader. */
+.hdr{position:sticky;top:0;z-index:80;background:rgba(35,36,36,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-hairline);}
+.hdr-in{min-height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:28px;padding-top:var(--sp-4);padding-bottom:var(--sp-4);}
+.nav{display:flex;align-items:center;gap:var(--sp-6);}
+.navlink{position:relative;font-family:var(--font-core);font-size:var(--fs-caption);font-weight:var(--fw-semibold);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--am-white);display:inline-flex;align-items:center;gap:6px;padding-bottom:4px;border-bottom:2px solid transparent;background:none;border-left:0;border-right:0;border-top:0;font-family:inherit;cursor:pointer;transition:var(--transition-interactive);}
+.navlink:hover,.navlink[data-current="1"]{color:var(--am-mint);border-bottom-color:var(--am-mint);}
+.menu{position:relative;}
+.sub{position:absolute;top:calc(100% + 18px);left:-18px;min-width:300px;background:var(--am-charcoal-soft);border:1px solid var(--border-hairline);border-radius:var(--radius-md);padding:10px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity var(--dur-base) var(--ease-standard),transform var(--dur-base) var(--ease-standard),visibility var(--dur-base);z-index:90;}
+.menu:hover .sub,.menu:focus-within .sub{opacity:1;visibility:visible;transform:none;}
+.menu:hover .caret{transform:rotate(180deg);}
+.caret{transition:transform var(--dur-base) var(--ease-standard);}
+.subitem{display:flex;gap:14px;align-items:flex-start;padding:13px 14px;border-radius:var(--radius-sm);color:var(--am-white);transition:background var(--dur-fast) var(--ease-standard);}
+.subitem:hover{background:rgba(255,255,255,.06);color:var(--am-white);}
+.subitem .sublede{display:block;font-size:var(--fs-body-sm);color:var(--am-grey-300);margin-top:3px;}
+.subdot{flex:none;width:8px;height:8px;margin-top:7px;}
+.burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid var(--action-secondary-border);border-radius:var(--radius-sm);background:transparent;color:var(--am-white);cursor:pointer;}
+.sheet{display:none;}
+/* Burger state is a class on .hdr (see nav.js) so the nav needs no logic class. */
+.burger .ico-x{display:none;}
+.hdr.nav-open .burger .ico-x{display:block;}
+.hdr.nav-open .burger .ico-menu{display:none;}
+.sheet-in{padding:20px 64px 32px;display:flex;flex-direction:column;gap:2px;}
+.sheet a{color:var(--am-grey-200);}
+.sheet .sheet-top{padding:14px 0;font-size:16px;font-weight:var(--fw-semibold);color:var(--am-white);border-bottom:1px solid var(--border-hairline);}
+.sheet .sheet-sub{padding:11px 0;font-size:15px;}
+
+/* Centring a design-system mount.
+   <x-import> puts its style on a display:contents host, so justify-content and
+   auto margins never reach the component's own flex root. These rules do. */
+.center-mount{display:flex;justify-content:center;}
+.center-mount blockquote{text-align:center;}
+.center-mount footer{justify-content:center;}
+
+/* Breathing room above a card's closing action. */
+.world-cta{margin-top:var(--sp-8);padding-top:var(--sp-6);border-top:1px solid var(--hair);}
+
+/* Counting figures must not reflow their row. */
+[data-count-scope]{font-variant-numeric:tabular-nums;}
+[data-count-scope] *{font-variant-numeric:tabular-nums;}
+[data-count-scope] > div{grid-auto-columns:minmax(0,1fr) !important;}
+[data-count]{font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+/* Case Studies is light-authored: white surfaces with dark text. Re-point the
+   legacy aliases to their light values inside that page's shell only. */
+.amds-shell{
+  /* Legacy charcoal ramp: high number = dark, low number = light (as authored). */
+  --white:var(--am-white);
+  --charcoal-900:var(--am-charcoal-deep);   /* #1c1d1d → #232424, dark surface */
+  --charcoal-800:var(--am-charcoal-deep);   /* #262727 → #232424, dark surface */
+  --charcoal-700:var(--am-charcoal);        /* #303131 → #303131, exact */
+  --charcoal-600:#454747;                   /* authored value; brand has no mid step */
+  --charcoal-500:var(--am-grey-600);        /* #5b5d5d → #535353 */
+  --charcoal-400:#7c7e7e;                   /* authored value; brand has no mid step */
+  --charcoal-300:var(--am-grey-400);        /* #a7a7a7 → #A7A7A7, exact */
+  --charcoal-200:var(--am-grey-300);        /* #c9cac9 → #C2C1C9, light text on dark */
+  --charcoal-100:var(--am-grey-200);        /* #e6e7e6 → #E4E5E8 */
+  --charcoal-50:var(--am-grey-100);         /* #f4f5f4 → #F4F6F7 */
+  --text-primary:var(--am-charcoal);
+  --text-secondary:var(--am-grey-600);
+  --border-subtle:var(--border-hairline-light);
+  --border-strong:rgba(48,49,49,.26);
+  --surface-alt:var(--am-grey-100);
+  --link:var(--am-charcoal);
+  --link-hover:var(--am-grey-600);
+  --sage-700:#5c9478;
+  --sage-600:#7fb597;
+  --sage-500:#9dcbb1;
+  --sage-400:var(--am-mint);                /* #c0dcce → #C0DCCE, exact */
+  --sky-700:#4d7fa8;
+  --sky-600:#6fa0c8;
+  --sky-500:#9fc0e0;
+  --brand-gradient:var(--am-mint);
+  --brand-gradient-soft:var(--am-mint-12);
+}
+/* The inlined header and footer are dark surfaces and address --am-* directly,
+   so they keep their own palette regardless of the shell's aliases. */
+
+/* Chips */
+.tag{display:inline-flex;align-items:center;gap:7px;font-size:var(--fs-caption);font-weight:var(--fw-semibold);letter-spacing:var(--ls-label);text-transform:uppercase;padding:6px 12px;border-radius:var(--radius-pill);line-height:1;}
+
+/* Vertical cards */
+.vcards{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.vcards2{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.vcard{position:relative;display:flex;flex-direction:column;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--hair);background:var(--card-bg);transition:var(--transition-interactive),box-shadow var(--dur-base) var(--ease-standard);}
+.vcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--am-mint-48);}
+.vcard-img img{transition:transform var(--dur-slow) var(--ease-standard),filter var(--dur-base) var(--ease-standard);}
+.vcard:hover .vcard-img img{transform:scale(1.05);filter:saturate(1);}
+.vcard-rail{transition:height var(--dur-base) var(--ease-standard);}
+.vcard:hover .vcard-rail{height:calc(var(--border-w-accent) * 2);}
+.vcard-img{aspect-ratio:16/9;overflow:hidden;}
+.vcard-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.85);}
+.vcard-rail{height:var(--border-w-accent);}
+
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.stat4{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+
+/* Two-world panel */
+.worlds{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.world{position:relative;overflow:hidden;border-radius:var(--radius-lg);padding:38px;border:1px solid var(--hair);background:var(--card-bg);transition:var(--transition-interactive),box-shadow var(--dur-base) var(--ease-standard);}
+.world:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--am-mint-48);}
+.world-rail{position:absolute;left:0;top:0;bottom:0;width:var(--accent-bar);transition:width var(--dur-base) var(--ease-standard);}
+.world:hover .world-rail{width:calc(var(--accent-bar) * 2);}
+/* Accent wash bleeding in from the rail edge on hover. */
+.world::after{content:"";position:absolute;left:0;top:0;bottom:0;width:56%;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,var(--am-mint-12),transparent);
+  transition:opacity var(--dur-base) var(--ease-standard);}
+.world:hover::after{opacity:1;}
+.world > *{position:relative;z-index:1;}
+.vlink{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:17px 0;border-top:1px solid var(--hair);color:var(--ink);
+  transition:color var(--dur-base) var(--ease-standard),padding var(--dur-base) var(--ease-standard),border-color var(--dur-base) var(--ease-standard);}
+.vlink:hover{color:var(--am-mint);border-color:var(--am-mint-48);padding-left:10px;}
+.lightsec .vlink:hover{color:var(--am-charcoal);border-color:var(--am-charcoal);}
+.vlink:hover .vgo{transform:translateX(6px);}
+.vgo{transition:transform var(--dur-base) var(--ease-standard);flex:none;}
+
+/* Service grid */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:var(--radius-md);overflow:hidden;}
+.svc-grid > a{background:var(--card-bg);padding:26px 28px;display:flex;align-items:center;gap:14px;color:var(--ink);font-size:15px;line-height:1.35;font-weight:var(--fw-semibold);letter-spacing:var(--ls-display);transition:background var(--dur-base) var(--ease-standard);min-height:92px;}
+.svc-grid > a:hover{background:rgba(255,255,255,.06);color:var(--am-mint);}
+.svc-grid i{flex:none;width:7px;height:7px;background:var(--am-mint);}
+
+.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+/* Capability/service grid, shared by every page that lists services. */
+.svc12{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gap,32px);}
+/* 2-up variant for a four-item list — a 3-column grid would leave one card
+   stranded alone on the second row. */
+.svc12.is-2up{grid-template-columns:repeat(2,1fr);}
+/* Mirrors components/marketing/ServiceCard.jsx token for token. */
+.svccard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--sp-4);padding:var(--sp-6) var(--sp-5);border-radius:var(--radius-md);border:1px solid var(--hair);background:var(--card-bg);transition:var(--transition-interactive),box-shadow var(--dur-base) var(--ease-standard);}
+.svccard:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--am-mint-48);}
+.svccard-i{display:inline-flex;color:var(--icon-ink);}
+.svccard-t{font-family:var(--font-core);font-size:var(--fs-body-sm);font-weight:var(--fw-bold);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--ink);line-height:1.35;}
+.svccard-b{font-family:var(--font-core);font-size:var(--fs-caption);line-height:1.7;color:var(--ink-muted);text-wrap:pretty;}
+/* Mirrors components/marketing/FeatureRow.jsx. */
+.frow{display:flex;gap:var(--sp-4);align-items:flex-start;}
+.frow-i{flex:0 0 auto;width:44px;height:44px;border-radius:var(--radius-sm);background:var(--icon-tile-bg);display:grid;place-items:center;color:var(--icon-tile-ink);}
+.frow-t{font-family:var(--font-core);font-size:var(--fs-h4);font-weight:var(--fw-bold);color:var(--ink);line-height:var(--lh-h4);}
+.frow-b{margin-top:var(--sp-2);font-family:var(--font-core);font-size:var(--fs-body-sm);line-height:var(--lh-body);color:var(--ink-muted);max-width:var(--measure-body);text-wrap:pretty;}
+
+/* Case-study cards */
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.cs{display:flex;flex-direction:column;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--hair);background:var(--card-bg);transition:var(--transition-interactive),box-shadow var(--dur-base) var(--ease-standard);}
+.cs:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.cs-img{aspect-ratio:16/10;overflow:hidden;}
+.cs-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.85);}
+
+/* Icon tiles — line icons, mint on a charcoal-soft tile. */
+.itile{flex:none;width:44px;height:44px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;background:var(--icon-tile-bg);color:var(--icon-tile-ink);}
+
+/* Metric rows */
+.counters{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.counter{padding:34px 34px 34px 0;border-top:1px solid var(--border-hairline);margin-right:34px;}
+.counter:last-child{margin-right:0;}
+.counter-n{font-family:var(--font-numeric);font-weight:var(--fw-extrabold);letter-spacing:-.02em;font-variant-numeric:tabular-nums;font-size:clamp(40px,5vw,68px);line-height:1;margin:0;color:var(--am-mint);}
+.counter-l{font-size:var(--fs-body);line-height:1.5;color:var(--am-grey-300);margin:14px 0 0;max-width:22ch;}
+.counter-track{height:4px;background:rgba(255,255,255,.12);margin-top:20px;overflow:hidden;}
+.counter-fill{display:block;height:100%;background:var(--am-mint);transform-origin:left center;animation:growx var(--dur-slow) var(--ease-standard) both;}
+@keyframes growx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* Logo band */
+.mq{position:relative;overflow:hidden;--mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:var(--mask);-webkit-mask-image:var(--mask);}
+.mq-track{display:flex;width:max-content;align-items:center;animation:mq 52s linear infinite;}
+.mq:hover .mq-track{animation-play-state:paused;}
+.mq-rev .mq-track{animation-direction:reverse;animation-duration:60s;}
+.mq-cell{flex:none;width:210px;height:110px;display:flex;align-items:center;justify-content:center;padding:0 26px;border-right:1px solid var(--hair);}
+.mq-cell img{max-height:52px;max-width:150px;width:auto;filter:grayscale(1);opacity:.72;transition:opacity var(--dur-base) var(--ease-standard);}
+.lightsec .mq-cell img{filter:grayscale(1) brightness(.6);opacity:1;}
+.lightsec .mq-cell img.inv{filter:grayscale(1);}
+.mq-cell:hover img{opacity:1;}
+.mq-cell img.inv{filter:grayscale(1) invert(1);}
+@keyframes mq{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+/* Icon plate — replaces a card's photo where a generic stock shot adds nothing.
+   Mint line glyph on charcoal-soft, per the iconography rules. */
+.vcard-plate{aspect-ratio:16/9;display:grid;place-items:center;background:var(--am-charcoal-soft);position:relative;}
+.lightsec .vcard-plate{background:var(--am-grey-100);}
+.vcard-plate svg{color:var(--am-mint);}
+.lightsec .vcard-plate svg{color:var(--am-charcoal);}
+.vcard-plate::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--hair);}
+
+/* Single-client spotlight — a lone logo in a grid cell reads as a stray tile. */
+.clientspot{display:flex;align-items:center;gap:var(--sp-6);flex-wrap:wrap;}
+.clientspot-mark{flex:none;width:210px;display:grid;place-items:center;padding:18px 22px;box-shadow:inset 0 0 0 1px var(--hair);}
+.clientspot-mark img{width:100%;max-width:160px;height:auto;}
+/* 3-up brand row for a shorter set, so it never inherits the 4-col track. */
+.brandgrid-3{grid-template-columns:repeat(3,1fr);}
+
+/* Hub heroes are centred sitewide: title, subtitle and description share one
+   axis, with the metric strip below them. */
+.hub-hero .wrap{text-align:center;}
+.hub-hero .hub-h1{margin-left:auto;margin-right:auto;}
+.hub-hero .lede{margin-left:auto;margin-right:auto;}
+.hub-hero .hero-metrics{margin-left:auto;margin-right:auto;}
+
+/* Eyebrow chip — a mint pill carrying the label. Mint is pale by design and
+   fails contrast as text on white, so the accent moves to the fill and the ink
+   stays charcoal. The component's own 2px rule is dropped at the mount. */
+.eb-chip{display:inline-flex;align-items:center;background:var(--am-mint);
+  border-radius:var(--radius-pill);padding:9px 18px;}
+.eb-chip > div,.eb-chip > * > div,.eb-chip > span,.eb-chip > * > span{color:var(--am-charcoal) !important;}
+
+/* FAQ. Native <details>, so the toggle needs no JS and the answers stay in the
+   DOM for answer engines. Single column: in two columns, opening one item
+   shifts its whole row. */
+/* Local two-weight heading, used where an explicit line break is needed
+   (SectionHeading accepts plain strings only). Display scale, on dark. */
+.split-h{margin:var(--sp-4) 0 0;font-family:var(--font-core);font-size:clamp(34px,4.4vw,var(--fs-display-2));
+  line-height:1.06;letter-spacing:var(--ls-display);font-weight:var(--fw-light);color:var(--am-ice);text-align:center;}
+.split-h strong{font-weight:var(--fw-bold);color:var(--am-white);}
+.faq-h{margin:var(--sp-4) 0 0;font-family:var(--font-core);font-size:clamp(28px,3.4vw,var(--fs-display-3));
+  line-height:1.12;letter-spacing:var(--ls-display);font-weight:var(--fw-light);color:var(--am-grey-600);text-align:center;}
+.faq-h strong{font-weight:var(--fw-bold);color:var(--am-charcoal);}
+.faq{display:grid;grid-template-columns:1fr;gap:var(--sp-3);max-width:840px;margin-inline:auto;}
+.faq-item{border:1px solid var(--hair);border-radius:var(--radius-md);background:var(--card-bg);overflow:hidden;
+  transition:background var(--dur-base) var(--ease-standard),border-color var(--dur-base) var(--ease-standard);}
+.faq-item[open]{background:var(--am-mint-24);border-color:var(--am-mint);}
+.faq-item:hover{border-color:var(--am-mint);}
+.faq-q{font-family:var(--font-core);font-size:var(--fs-h4);font-weight:var(--fw-bold);color:var(--ink);line-height:var(--lh-h4);margin:0;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp-5);
+  padding:var(--sp-5);cursor:pointer;list-style:none;transition:color var(--dur-base) var(--ease-standard);}
+.faq-q::-webkit-details-marker{display:none;}
+.faq-q:hover{color:var(--am-mint);}
+.lightsec .faq-q:hover{color:var(--am-grey-600);}
+.faq-ico{flex:none;position:relative;width:32px;height:32px;border-radius:var(--radius-sm);
+  background:var(--am-mint);color:var(--am-charcoal);}
+.faq-item[open] .faq-ico{background:var(--am-charcoal);color:var(--am-mint);}
+.faq-ico::before,.faq-ico::after{content:"";position:absolute;background:currentColor;border-radius:1px;
+  transition:transform var(--dur-base) var(--ease-standard),opacity var(--dur-base) var(--ease-standard);}
+.faq-ico::before{left:9px;right:9px;top:15px;height:2px;}
+.faq-ico::after{top:9px;bottom:9px;left:15px;width:2px;}
+.faq-item[open] .faq-ico::after{transform:scaleY(0);opacity:0;}
+.faq-item:not([open]) .faq-a-wrap{display:none;}
+.faq-a-wrap{overflow:hidden;}
+.faq-item[open] .faq-a-wrap{animation:faqOpen var(--dur-slow) var(--ease-standard) both;}
+@keyframes faqOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.faq-a{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--am-charcoal);margin:0;max-width:var(--measure-body);text-wrap:pretty;padding:0 var(--sp-5) var(--sp-5);}
+@media (prefers-reduced-motion:reduce){.faq-item[open] .faq-a-wrap{animation:none}}
+
+/* Numbered process steps. Horizontal on wide screens with a connector rule
+   between nodes; stacks to a vertical list on narrow. */
+.proc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:var(--sp-5);counter-reset:proc;}
+.proc-step{display:flex;flex-direction:column;gap:var(--sp-2);position:relative;}
+.proc-node{width:52px;height:52px;border-radius:var(--radius-pill);display:grid;place-items:center;
+  background:var(--am-charcoal-soft);border:2px solid var(--am-mint);color:var(--am-mint);
+  margin-bottom:var(--sp-3);position:relative;z-index:1;}
+.lightsec .proc-node{background:var(--am-white);border-color:var(--am-charcoal);color:var(--am-charcoal);}
+/* Connector spans the column pitch (one step's width + the grid gap), measured
+   from the step — not from the 52px node, whose 100% is far too short to reach. */
+.proc-step:not(:last-child)::after{content:"";position:absolute;top:26px;
+  left:calc(52px + 14px);width:calc(100% + var(--sp-5) - 52px - 28px);
+  height:1px;background:var(--hair);z-index:0;}
+.proc-num{font-size:var(--fs-caption);font-weight:var(--fw-semibold);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--ink-faint);}
+.proc-title{font-family:var(--font-core);font-size:var(--fs-h4);font-weight:var(--fw-bold);color:var(--ink);line-height:var(--lh-h4);}
+.proc-body{font-size:var(--fs-body-sm);line-height:var(--lh-body);color:var(--ink-muted);text-wrap:pretty;}
+@container page (max-width:1180px){.proc{grid-template-columns:repeat(3,1fr);gap:var(--sp-6)}
+  /* Wrapping rows would leave a line pointing into empty space. */
+  .proc-step:not(:last-child)::after{display:none}}
+@container page (max-width:720px){.proc{grid-template-columns:1fr;gap:var(--sp-5)}}
+
+/* White panel inside a charcoal section: keeps the section's place in the
+   dark/light rhythm while giving dark-ink logos the light ground they need.
+   Borderless \u2014 no tiles, no hairline grid. */
+.lightpanel{background:var(--am-white);border-radius:20px;padding:var(--sp-8) var(--sp-7);
+  --ink:var(--am-charcoal);--ink-muted:var(--text-body-on-light);--ink-faint:var(--am-grey-600);
+  --hair:var(--border-hairline-light);}
+.lightpanel .h4,.lightpanel .h3,.lightpanel .h2{color:var(--am-charcoal);}
+.lightpanel .body,.lightpanel .lede{color:var(--text-body-on-light);}
+@container page (max-width:720px){.lightpanel{padding:var(--sp-6) var(--sp-5)}}
+
+/* Borderless logo flow \u2014 no tiles or hairlines; the marks sit on the light
+   ground with generous air, which reads calmer than a bordered grid. */
+.logoflow{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--sp-7) var(--sp-6);align-items:center;}
+.logoflow > span{display:flex;align-items:center;justify-content:center;min-height:56px;}
+.logoflow img{width:100%;max-width:132px;height:auto;opacity:.55;transition:opacity var(--dur-base) var(--ease-standard),transform var(--dur-base) var(--ease-standard);}
+.logoflow > span:hover img{opacity:1;transform:scale(1.06);}
+.logoflow.is-brands img{max-width:104px;opacity:.45;}
+.logoflow.is-brands > span{min-height:46px;}
+/* A short set must not stretch across a 6-track grid; size to content instead. */
+.logoflow.is-short{display:flex;flex-wrap:wrap;gap:var(--sp-6) var(--sp-8);align-items:center;}
+.logoflow.is-short > span{flex:0 0 auto;width:132px;}
+.logoflow-div{margin-top:var(--sp-9);padding-top:var(--sp-6);border-top:1px solid var(--border-hairline-light);margin-bottom:var(--sp-6);}
+
+/* Brand logo strip. The guide reserves white for panels exactly like this one,
+   so manufacturer marks sit on their native light ground inside a dark section. */
+.brandpanel{background:var(--am-white);border-radius:var(--radius-lg);padding:var(--sp-7) var(--sp-6);
+  --ink:var(--am-charcoal);--ink-muted:var(--text-body-on-light);--hair:var(--border-hairline-light);}
+.brandgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+/* Hairlines are drawn by each cell, not by a container fill showing through a
+   1px gap — so an incomplete last row can never leave a phantom grey tile,
+   whatever the logo count. */
+.brandgrid > span{background:var(--am-white);box-shadow:inset 0 0 0 1px var(--border-hairline-light);display:flex;align-items:center;justify-content:center;padding:22px 20px;min-height:104px;}
+.brandgrid img{width:100%;max-width:180px;height:auto;filter:grayscale(1);opacity:.62;transition:opacity var(--dur-base) var(--ease-standard),filter var(--dur-base) var(--ease-standard);}
+.brandgrid > span:hover img{opacity:1;filter:grayscale(0);}
+
+/* Dark variant. The manufacturer marks are chrome/silver artwork built for dark
+   grounds; on a white panel they wash out, so that set keeps a charcoal panel. */
+.brandpanel.on-dark{background:var(--am-charcoal-soft);--ink:var(--am-white);--ink-muted:var(--am-grey-300);--hair:var(--border-hairline);}
+.brandpanel.on-dark .brandgrid > span{background:var(--am-charcoal-soft);box-shadow:inset 0 0 0 1px var(--border-hairline);}
+.brandpanel.on-dark .brandgrid img{filter:grayscale(1);opacity:.78;}
+.brandpanel.on-dark .brandgrid > span:hover img{opacity:1;filter:grayscale(0);}
+/* Secondary strip — quieter than the clients panel above it. */
+.brandpanel.is-secondary{padding:var(--sp-5) var(--sp-6);}
+.brandpanel.is-secondary .brandgrid > span{min-height:88px;padding:16px 18px;}
+.brandpanel.is-secondary .brandgrid img{max-width:150px;opacity:.66;}
+
+/* OEM panels */
+.oem{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border-hairline);border:1px solid var(--border-hairline);border-radius:var(--radius-md);overflow:hidden;}
+.oem > div{background:var(--am-charcoal-soft);display:flex;align-items:center;justify-content:center;padding:22px 16px;min-height:92px;}
+.oem img{max-height:34px;width:auto;filter:grayscale(1);opacity:.6;transition:opacity var(--dur-base) var(--ease-standard);}
+.oem > div:hover img{opacity:1;}
+.oem img.inv{filter:grayscale(1) invert(1);}
+
+/* Wide case-study card */
+.wide-cs{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;padding:0;overflow:hidden;}
+.wide-cs-img{min-height:300px;overflow:hidden;}
+.wide-cs-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.85);}
+
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;}
+.footlink{display:block;font-family:var(--font-core);font-size:var(--fs-body-sm);color:var(--text-body);padding:7px 0;}
+.footlink:hover{color:var(--am-mint);}
+.soc{width:34px;height:34px;border-radius:var(--radius-pill);border:1px solid var(--border-hairline);display:grid;place-items:center;color:var(--am-white);transition:var(--transition-interactive);}
+.soc:hover{border-color:var(--am-mint);color:var(--am-mint);}
+
+/* Big centred figure row — the loudest numbers on the page.
+   Manrope ExtraBold per the guide's numeric-face rule for large percentages.
+   Colour arrives as tinted panels, not tinted type: mint and ice are pale and
+   fail contrast as text on white, so the ink stays charcoal. */
+.bignums{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5);margin-top:var(--sp-9);}
+.bignum{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--sp-3);
+  padding:var(--sp-7) var(--sp-5);border-radius:var(--radius-md);position:relative;overflow:hidden;
+  transition:var(--transition-interactive),box-shadow var(--dur-base) var(--ease-standard);}
+.bignum::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--accent-bar);}
+.bignum.is-mint{background:var(--am-mint);}
+.bignum.is-mint::before{background:var(--am-charcoal);}
+.bignum.is-ice{background:var(--am-ice);}
+.bignum.is-ice::before{background:var(--am-charcoal);}
+.bignum:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.bignum-fig{font-family:var(--font-numeric);font-weight:var(--fw-extrabold);font-size:clamp(48px,6.8vw,92px);
+  line-height:.94;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--am-charcoal);}
+.bignum-lab{font-size:var(--fs-body-sm);font-weight:var(--fw-semibold);letter-spacing:var(--ls-label);
+  text-transform:uppercase;color:var(--am-charcoal);max-width:16ch;}
+.board{max-width:760px;margin:var(--sp-10) auto 0;padding-top:var(--sp-8);border-top:1px solid var(--hair);}
+@container page (max-width:900px){
+  .bignums{grid-template-columns:1fr;gap:var(--sp-4)}
+  .bignum-fig{font-size:clamp(52px,15vw,84px)}
+}
+
+/* Carousel — a real scroll-snap row, so it works with or without JS. */
+.carousel{position:relative;}
+/* The track is a scroll container, so it clips on BOTH axes. Interior padding
+   (offset by negative margins) gives the hover lift and shadow room to render;
+   scroll-padding keeps snap alignment honest despite that padding. */
+.carousel-track{display:flex;gap:var(--grid-gap,32px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;padding:22px 24px 30px;margin:-22px -24px -30px;scroll-padding-left:24px;}
+.carousel-track::-webkit-scrollbar{display:none;}
+.carousel-slide{flex:0 0 calc((100% - var(--grid-gap,32px) * 2) / 3);scroll-snap-align:start;display:flex;}
+.carousel-slide > .csx{width:100%;}
+.carousel-ui{display:flex;align-items:center;justify-content:center;gap:var(--sp-4);margin-top:var(--sp-4);}
+.carousel-arrow{width:44px;height:44px;flex:none;display:grid;place-items:center;border-radius:var(--radius-pill);border:1px solid var(--action-secondary-border);background:transparent;color:var(--ink);cursor:pointer;transition:var(--transition-interactive);}
+.carousel-arrow:hover{border-color:var(--am-mint);color:var(--am-mint);}
+.lightsec .carousel-arrow{border-color:rgba(48,49,49,.26);}
+.lightsec .carousel-arrow:hover{border-color:var(--am-charcoal);color:var(--am-charcoal);}
+.carousel-dots{display:flex;align-items:center;gap:9px;}
+.carousel-dot{width:9px;height:9px;padding:0;border:0;border-radius:var(--radius-pill);background:rgba(255,255,255,.28);cursor:pointer;transition:var(--transition-interactive);}
+.carousel-dot[aria-current="true"]{background:var(--am-mint);width:28px;}
+.lightsec .carousel-dot{background:rgba(48,49,49,.22);}
+.lightsec .carousel-dot[aria-current="true"]{background:var(--am-charcoal);}
+@container page (max-width:980px){
+  .carousel-slide{flex-basis:calc((100% - var(--grid-gap,32px)) / 2)}
+}
+@container page (max-width:720px){
+  .carousel-slide{flex-basis:100%}
+}
+
+/* Hero metric strip. The design-system MetricStrip sets grid-auto-flow:column
+   INLINE on its own root, which forces every metric onto one row at any width
+   and cannot be beaten by an ordinary rule. The intermediate x-import host is
+   display:contents, hence the two-level selector. */
+.hero-metrics > div,
+.hero-metrics > * > div{max-width:100%;}
+@container page (max-width:900px){
+  .hero-metrics > div,
+  .hero-metrics > * > div{grid-auto-flow:row !important;grid-template-columns:repeat(2,1fr) !important;}
+}
+@container page (max-width:560px){
+  .hero-metrics > div,
+  .hero-metrics > * > div{grid-template-columns:1fr !important;}
+}
+
+/* Logo carousel — more, smaller cells than a content carousel. */
+.logo-carousel .carousel-track{padding:8px 24px 18px;margin:-8px -24px -18px;}
+.logo-slide{flex:0 0 calc((100% - var(--grid-gap,32px) * 5) / 6);align-items:center;justify-content:center;}
+.logo-slide > span{display:flex;align-items:center;justify-content:center;width:100%;height:92px;}
+.logo-slide img{max-height:58px;max-width:100%;width:auto;object-fit:contain;filter:grayscale(1);opacity:.62;transition:opacity var(--dur-base) var(--ease-standard),filter var(--dur-base) var(--ease-standard);}
+.logo-slide:hover img{filter:grayscale(0);opacity:1;}
+@container page (max-width:1180px){.logo-slide{flex-basis:calc((100% - var(--grid-gap,32px) * 3) / 4)}}
+@container page (max-width:900px){.logo-slide{flex-basis:calc((100% - var(--grid-gap,32px) * 2) / 3)}}
+@container page (max-width:640px){.logo-slide{flex-basis:calc((100% - var(--grid-gap,32px)) / 2)}}
+
+/* Case-studies hero — split treatment with the 60-day panel. */
+.cs-hero-in{position:relative;max-width:var(--amds-w,1440px);margin:0 auto;padding:120px 32px 104px;}
+.cs-hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:64px;align-items:center;}
+.cs-hero-panel{border-radius:20px;padding:34px;background:var(--charcoal-800);border:1px solid rgba(255,255,255,.12);box-shadow:0 26px 60px rgba(0,0,0,.4);}
+.cs-spark{width:100%;height:96px;display:block;margin-top:22px;}
+.cs-hero-metrics{display:grid;gap:18px;margin-top:var(--sp-5);}
+.cs-hero-metrics > div{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12);}
+.cs-hero-fig{font-family:var(--font-numeric);font-weight:800;font-size:26px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--sage-400);}
+.cs-hero-lab{font-size:14px;color:var(--charcoal-300);}
+@container page (max-width:980px){
+  .cs-hero-grid{grid-template-columns:1fr;gap:44px}
+  .cs-hero-in{padding:96px 24px 80px}
+}
+
+/* Centred hero — bold and large, the page's single loudest moment. */
+.hero-center{display:flex;align-items:center;justify-content:center;min-height:min(90vh,880px);text-align:center;}
+.hero-center-in{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:150px 32px 120px;display:flex;flex-direction:column;align-items:center;}
+.hero-scrim-c{position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,36,36,.82) 0%,rgba(35,36,36,.62) 45%,rgba(35,36,36,.88) 100%);}
+.hero-glow{position:absolute;border-radius:999px;pointer-events:none;z-index:1;}
+.hero-glow-a{top:-20%;right:-10%;width:680px;height:680px;background:radial-gradient(circle,rgba(192,220,206,.20),transparent 68%);}
+.hero-glow-b{bottom:-26%;left:-12%;width:600px;height:600px;background:radial-gradient(circle,rgba(225,235,245,.14),transparent 68%);}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;margin:0;padding:10px 20px;border:1px solid rgba(255,255,255,.18);border-radius:var(--radius-pill);font-size:12px;font-weight:var(--fw-semibold);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--am-mint);}
+/* "Real Growth." holds its own line at display scale; the bold clause sits
+   below at a smaller size so it stays on one line and reads as the payoff. */
+.hero-xl{margin:0;font-size:clamp(44px,8vw,104px);line-height:1;letter-spacing:-.035em;
+  font-weight:var(--fw-light);color:var(--am-ice);text-wrap:nowrap;}
+.hero-xl strong{display:block;margin-top:.22em;font-size:.44em;line-height:1.12;letter-spacing:-.02em;
+  font-weight:var(--fw-bold);color:var(--am-white);text-wrap:balance;}
+@container page (max-width:560px){
+  .hero-xl{font-size:clamp(34px,11vw,54px)}
+  .hero-xl strong{font-size:.56em}
+}
+.hero-kicker{margin:var(--sp-5) auto 0;font-size:clamp(20px,2.6vw,32px);line-height:1.25;letter-spacing:-.015em;font-weight:var(--fw-light);color:var(--am-ice);text-wrap:balance;}
+.hero-kicker strong{font-weight:var(--fw-bold);color:var(--am-white);}
+.hero-sub{margin:var(--sp-4) auto 0;max-width:56ch;font-size:clamp(16px,1.7vw,19px);line-height:1.65;color:var(--am-grey-300);text-wrap:pretty;}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:var(--sp-4);justify-content:center;margin-top:var(--sp-8);}
+@container page (max-width:720px){
+  .hero-center-in{padding:120px 24px 88px}
+  .hero-glow-a,.hero-glow-b{width:380px;height:380px}
+}
+
+/* Hero: no entrance animation — content must never depend on JS or a keyframe
+   to become visible. Static styles only. */
+.hero-video{transform:translateZ(0);}
+.runbar{position:absolute;top:0;left:0;display:flex;align-items:center;gap:22px;z-index:3;}
+.runbar .runhead{position:static;margin:0;white-space:nowrap;}
+.spark path.line{fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;}
+@media (prefers-reduced-motion:reduce){
+  .ba-fill,.counter-fill{animation:none}
+}
+
+/* ---------- Result cards (CaseStudyCard tokens + the result figure it has no slot for) ---------- */
+.csx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--grid-gap,32px);}
+/* Five cards never divide by 4 or 2 without stranding one, so this variant
+   holds 3-up (rows of 3 + 2) and goes straight to single column. */
+.csx-grid.is-3up{grid-template-columns:repeat(3,1fr);}
+.csx{position:relative;display:flex;flex-direction:column;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--hair);background:var(--card-bg);
+  transition:transform 320ms var(--ease-standard),box-shadow 320ms var(--ease-standard),border-color 320ms var(--ease-standard);}
+.csx:hover{transform:translateY(-12px) scale(1.02);box-shadow:0 34px 70px rgba(12,12,12,.55);border-color:var(--am-mint);}
+.csx-img{position:relative;aspect-ratio:16/10;overflow:hidden;}
+.csx-img img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85) brightness(.94);
+  transition:transform 620ms var(--ease-standard),filter 320ms var(--ease-standard);}
+.csx:hover .csx-img img{transform:scale(1.12);filter:saturate(1.05) brightness(1.05);}
+/* The scrim exists solely to make .csx-fig legible, so a card without a figure
+   (a rooftop with no published number yet) shows its photo clean instead. */
+.csx-img:not(:has(.csx-fig)) .csx-scrim,
+.csx:hover .csx-img:not(:has(.csx-fig)) .csx-scrim{background:linear-gradient(180deg,rgba(35,36,36,0) 55%,rgba(35,36,36,.32) 100%);}
+.csx-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,36,36,.1) 0%,rgba(35,36,36,.86) 100%);
+  transition:background 320ms var(--ease-standard);}
+.csx:hover .csx-scrim{background:linear-gradient(180deg,rgba(35,36,36,0) 0%,rgba(35,36,36,.9) 100%);}
+.csx-fig{position:absolute;left:var(--sp-5);bottom:var(--sp-4);margin:0;font-family:var(--font-numeric);font-weight:var(--fw-extrabold);font-size:44px;line-height:1;letter-spacing:-.03em;color:var(--am-mint);
+  transform-origin:left bottom;transition:transform 320ms var(--ease-standard);}
+.csx:hover .csx-fig{transform:scale(1.16);}
+.csx-tag{position:absolute;right:var(--sp-4);top:var(--sp-4);margin:0;font-size:var(--fs-caption);font-weight:var(--fw-semibold);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--am-charcoal);background:var(--am-mint);padding:5px 10px;
+  transition:transform 320ms var(--ease-standard);}
+.csx:hover .csx-tag{transform:translateY(-3px);}
+.csx-body{padding:var(--sp-5);display:flex;flex-direction:column;gap:var(--sp-3);flex:1;}
+.csx-name{font-family:var(--font-core);font-size:var(--fs-h3);font-weight:var(--fw-bold);color:var(--ink);letter-spacing:var(--ls-display);}
+.csx-note{font-family:var(--font-core);font-size:var(--fs-body-sm);line-height:var(--lh-body);color:var(--ink-muted);margin:0;}
+.csx-more{margin-top:auto;padding-top:var(--sp-3);font-size:var(--fs-caption);font-weight:var(--fw-semibold);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--am-mint);display:inline-flex;align-items:center;gap:8px;}
+.lightsec .csx-more{color:var(--am-charcoal);}
+.csx:hover .csx-more svg{transform:translateX(8px);}
+.csx-more svg{transition:transform var(--dur-base) var(--ease-standard);}
+/* Wide variant — for a vertical whose category has only one case study, where a
+   2-up grid would otherwise leave an empty column. */
+.csx-wide{display:grid;grid-template-columns:.85fr 1.15fr;align-items:stretch;}
+.csx-wide .csx-img{aspect-ratio:auto;min-height:300px;}
+.csx-wide .csx-body{justify-content:center;padding:var(--sp-7);gap:var(--sp-3);}
+.csx-fig-inline{position:static;font-size:58px;transform:none;}
+.csx-wide:hover .csx-fig-inline{transform:none;}
+.lightsec .csx-fig-inline{color:var(--am-charcoal);}
+
+/* Service icon tiles carry the accent on light panels */
+.svccard-i{width:56px;height:56px;display:grid;place-items:center;background:var(--am-mint);color:var(--am-charcoal);}
+.svccard.consult .svccard-i{background:var(--am-ice);}
+
+/* Chart colour */
+.ba-fill.accent{background:var(--am-mint);}
+.ba-chart{background:var(--am-charcoal-deep);border-radius:var(--radius-lg);padding:var(--sp-6);}
+.ba-chart .ba-label{color:var(--am-grey-300);}
+.ba-chart .ba-bar{background:rgba(255,255,255,.1);}
+
+@container page (max-width:1180px){
+  .svc{grid-template-columns:repeat(2,1fr)}
+  .cs-grid,.csx-grid:not(.is-3up){grid-template-columns:repeat(2,1fr)}
+  .oem{grid-template-columns:repeat(5,1fr)}
+  .brandgrid{grid-template-columns:repeat(4,1fr)}
+  .brandgrid-3{grid-template-columns:repeat(3,1fr)}
+  .logoflow{grid-template-columns:repeat(4,1fr)}
+  .g5{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .split{gap:44px}
+}
+@container page (max-width:980px){
+  .sec{padding:72px 0}
+  .split{grid-template-columns:1fr;gap:36px}
+  .g3,.g5{grid-template-columns:repeat(2,1fr)}
+  .wrap,.wrap-n{padding:0 32px}
+  .sheet-in{padding:20px 32px 32px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .worlds,.vcards,.vcards2{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .oem{grid-template-columns:repeat(4,1fr)}
+  .brandgrid{grid-template-columns:repeat(4,1fr)}
+  .stat4{grid-template-columns:repeat(2,1fr)}
+  .stat3{grid-template-columns:repeat(2,1fr)}
+  .csx-grid:not(.is-3up){grid-template-columns:repeat(2,1fr)}
+  .counters{grid-template-columns:1fr}
+  .counter{margin-right:0;padding:26px 0}
+}
+@container page (max-width:720px){
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr}
+  .sec{padding:56px 0}
+  .card{padding:26px}
+  .wrap,.wrap-n{padding:0 24px}
+  .sheet-in{padding:20px 24px 32px}
+  .foot-grid{grid-template-columns:1fr;gap:32px}
+  .cs-grid,.csx-grid,.csx-grid.is-3up,.svc,.svc-grid,.stat3,.stat4{grid-template-columns:1fr}
+  .svc12{grid-template-columns:1fr}
+  .svc12.is-2up{grid-template-columns:1fr}
+  .oem{grid-template-columns:repeat(3,1fr)}
+  .brandgrid{grid-template-columns:repeat(2,1fr)}
+  .brandgrid-3{grid-template-columns:repeat(2,1fr)}
+  .logoflow{grid-template-columns:repeat(2,1fr);gap:var(--sp-6) var(--sp-5)}
+  .clientspot-mark{width:100%}
+  .brandgrid > span{min-height:84px;padding:16px 14px}
+  .brandpanel{padding:var(--sp-5) var(--sp-4)}
+  .csx-wide{grid-template-columns:1fr}
+  .csx-wide .csx-img{min-height:210px}
+  .csx-wide .csx-body{padding:var(--sp-5)}
+  .world{padding:28px}
+  .wide-cs{grid-template-columns:1fr}
+  .wide-cs-img{min-height:220px}
+  .mq-cell{width:160px;height:92px;padding:0 18px}
+}
+@media (max-width:960px){
+  .nav{display:none}
+  .burger{display:flex}
+  .hdr.nav-open .sheet{display:block}
+}
+/* Smallest phones: the header CTA and the burger cannot share the row, and the
+   mobile sheet already ends with a full-width version of the same button. */
+@container page (max-width:420px){
+  .hdr-in > div:last-child > div:first-child{display:none !important}
+  .hdr-in{gap:12px}
+}
+@media (prefers-reduced-motion:reduce){
+    .mq-track,.counter-fill{animation:none !important}
+}
+
+
+/* ---------- Case-studies visual language, applied site-wide ----------
+   The case-studies tab uses a softer geometry than the rest of the site:
+   ~20px card corners and tinted mint icon tiles rather than solid mint plates.
+   These overrides bring every page onto that language without markup changes. */
+.card,.world,.vcard,.csx,.cs,.panel,.brandpanel,.svccard,.wide-cs{border-radius:20px;}
+.brandpanel.is-secondary{border-radius:20px;}
+.vcard,.csx,.cs{overflow:hidden;}
+
+/* Icon tiles: mint at 12% with a mint glyph, soft-square — not a solid mint plate. */
+.svccard-i{width:52px;height:52px;border-radius:14px;background:var(--am-mint-12);color:var(--am-mint);}
+.svccard.consult .svccard-i{background:var(--am-ice-12);color:var(--am-ice);}
+.lightsec .svccard-i{background:var(--am-mint-24);color:var(--am-charcoal);}
+.lightsec .svccard.consult .svccard-i{background:var(--am-ice-24);color:var(--am-charcoal);}
+.frow-i{border-radius:14px;background:var(--am-mint-12);color:var(--am-mint);}
+.lightsec .frow-i{background:var(--am-mint-24);color:var(--am-charcoal);}
+.itile{border-radius:14px;background:var(--am-mint-12);color:var(--am-mint);}
+.lightsec .itile{background:var(--am-mint-24);color:var(--am-charcoal);}
+.vcard-plate{border-radius:0;}
+.vcard-plate svg{color:var(--am-mint);}
+.lightsec .vcard-plate{background:var(--am-mint-12);}
+.lightsec .vcard-plate svg{color:var(--am-charcoal);}
+
+/* Stat figures read as mint numerals, as they do on the case-studies tab. */
+.counter-n,.csx-fig,.csx-fig-inline{color:var(--am-mint);}
+.lightsec .counter-n{color:var(--am-charcoal);}
+
+/* The client spotlight mark keeps a soft tile too. */
+.clientspot-mark{border-radius:14px;}
+
+/* Feature service card — a newly launched service leads the grid full width,
+   which also keeps the remaining nine as an even 3x3. */
+.svccard.is-feature{flex-direction:row;align-items:center;text-align:left;gap:var(--sp-5);padding:var(--sp-6);border-color:var(--am-mint-48);}
+.svccard.is-feature .svccard-i{flex:none;}
+.svccard.is-feature .svccard-t{font-size:var(--fs-body);display:inline-flex;align-items:center;gap:var(--sp-3);flex:none;}
+.svccard.is-feature .svccard-b{font-size:var(--fs-body-sm);}
+.svccard-new{font-size:9.5px;font-weight:var(--fw-bold);letter-spacing:var(--ls-label);text-transform:uppercase;padding:3px 7px;border-radius:var(--radius-pill);background:var(--am-mint);color:var(--am-charcoal);}
+@container page (max-width:720px){
+  .svccard.is-feature{flex-direction:column;align-items:flex-start;}
+}
+
+/* Automotive practices. The audience name leads, each card carries one pulled
+   out figure, so the three segments read as segments rather than generic cards. */
+.practs{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5);margin-top:var(--sp-8);text-align:left;}
+.pract{display:flex;flex-direction:column;gap:var(--sp-3);padding:var(--sp-6);border-radius:var(--radius-md);
+  border:1px solid var(--hair);background:var(--card-bg);color:var(--ink);
+  transition:var(--transition-interactive),box-shadow var(--dur-base) var(--ease-standard),border-color var(--dur-base) var(--ease-standard);}
+.pract:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--am-mint);color:var(--ink);}
+.pract-ico{width:56px;height:56px;flex:none;display:grid;place-items:center;
+  background:var(--am-mint);color:var(--am-charcoal);border-radius:var(--radius-sm);}
+.pract-name{font-family:var(--font-core);font-size:24px;font-weight:var(--fw-bold);
+  letter-spacing:var(--ls-display);line-height:1.2;color:var(--ink);margin-top:var(--sp-2);}
+.pract-who{font-size:var(--fs-body-sm);line-height:1.6;color:var(--ink-muted);text-wrap:pretty;}
+.pract-fig{display:flex;flex-direction:column;gap:6px;margin-top:var(--sp-3);
+  padding:var(--sp-4) var(--sp-4) var(--sp-4) 0;border-top:1px solid var(--hair);}
+.pract-fig-n{font-family:var(--font-numeric);font-weight:var(--fw-extrabold);font-size:44px;line-height:1;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--ink);}
+.pract-fig-l{font-size:var(--fs-caption);line-height:1.5;color:var(--ink-muted);}
+.pract-second{font-size:var(--fs-caption);line-height:1.5;color:var(--ink-faint);}
+.pract-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:var(--sp-4);}
+.pract-tags > span{font-size:11px;font-weight:var(--fw-semibold);letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 10px;border:1px solid var(--hair);border-radius:var(--radius-pill);color:var(--ink-muted);}
+.pract-cue{display:inline-flex;align-items:center;gap:8px;margin-top:var(--sp-4);
+  font-size:var(--fs-caption);font-weight:var(--fw-semibold);letter-spacing:var(--ls-label);
+  text-transform:uppercase;color:var(--am-charcoal);}
+.pract:hover .pract-cue svg{transform:translateX(4px);}
+.pract-cue svg{transition:transform var(--dur-base) var(--ease-standard);}
+@container page (max-width:980px){.practs{grid-template-columns:1fr}}
+
+/* Case-studies page: vertical process list and result grid. These rules were
+   lost with an earlier animation cleanup; the markup relies on them. */
+.amds-proc{display:flex;flex-direction:column;gap:0;}
+.amds-step{display:grid;grid-template-columns:64px 1fr;gap:28px;}
+.amds-node-col{display:flex;flex-direction:column;align-items:center;}
+.amds-conn{flex:1;width:1px;min-height:28px;background:rgba(255,255,255,.16);margin:12px 0;}
+.amds-step:last-child .amds-conn{display:none;}
+.amds-body{padding-bottom:40px;}
+.amds-step:last-child .amds-body{padding-bottom:0;}
+@container page (max-width:1180px){
+  .amds-cs-grid{grid-template-columns:repeat(2,1fr) !important;}
+}
+@container page (max-width:720px){
+  .amds-cs-grid{grid-template-columns:1fr !important;}
+  .amds-step{grid-template-columns:48px 1fr;gap:20px}
+}
+
+/* Recreation client row: three cards on a light panel. */
+.clientrow{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5);text-align:left;}
+.clientcard{display:flex;flex-direction:column;padding:var(--sp-5);border-radius:var(--radius-md);
+  border:1px solid var(--hair);background:var(--card-bg);}
+.clientcard .body{font-size:var(--fs-body-sm);}
+@container page (max-width:900px){.clientrow{grid-template-columns:1fr}}

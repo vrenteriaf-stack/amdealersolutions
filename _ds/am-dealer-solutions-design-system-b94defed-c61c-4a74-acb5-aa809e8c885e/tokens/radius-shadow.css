@@ -1,0 +1,18 @@
+:root{
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:16px;
+  --radius-xl:24px;
+  --radius-pill:999px;
+  --radius-photo:12px;     /* deck image panels */
+
+  --border-w-hair:1px; /* @kind other */
+  --border-w-accent:3px; /* @kind other */   /* mint rule under headings */
+  --accent-bar:14px;       /* mint block at slide top-left */
+
+  --shadow-sm:0 1px 2px rgba(12,12,12,.18);
+  --shadow-md:0 8px 24px rgba(12,12,12,.28);
+  --shadow-lg:0 24px 60px rgba(12,12,12,.38);
+  --shadow-photo:0 18px 40px rgba(12,12,12,.45);
+  --shadow-inset-hair:inset 0 0 0 1px rgba(255,255,255,.08);
+}

@@ -1,0 +1,65 @@
+:root{
+  /* Brand core */
+  --am-charcoal:#303131;          /* primary surface, logo mono */
+  --am-charcoal-deep:#232424;     /* deeper panel / photo scrim */
+  --am-charcoal-soft:#3B3C3C;     /* raised panel on charcoal */
+  --am-mint:#C0DCCE;              /* primary accent */
+  --am-ice:#E1EBF5;               /* secondary accent, headline tint */
+  --am-white:#FFFFFF;
+  --am-black:#0C0C0C;
+
+  /* Neutrals lifted from the deck */
+  --am-grey-100:#F4F6F7;
+  --am-grey-200:#E4E5E8;
+  --am-grey-300:#C2C1C9;
+  --am-grey-400:#A7A7A7;
+  --am-grey-600:#535353;
+  --am-grey-700:#3F4040;
+
+  /* Accent tints (mint / ice at reduced strength for fills and rules) */
+  --am-mint-12:rgba(192,220,206,.12);
+  --am-mint-24:rgba(192,220,206,.24);
+  --am-mint-48:rgba(192,220,206,.48);
+  --am-ice-12:rgba(225,235,245,.12);
+  --am-ice-24:rgba(225,235,245,.24);
+
+  /* Semantic surfaces */
+  --surface-page:var(--am-charcoal);
+  --surface-page-alt:var(--am-white);
+  --surface-card:var(--am-charcoal-soft);
+  --surface-card-light:var(--am-white);
+  --surface-panel-ice:var(--am-ice);
+  --surface-panel-mint:var(--am-mint);
+  --surface-scrim:rgba(35,36,36,.78);
+
+  /* Semantic text */
+  --text-heading:var(--am-white);
+  --text-heading-tint:var(--am-ice);
+  --text-body:var(--am-grey-300);
+  --text-body-on-light:var(--am-grey-600);
+  --text-heading-on-light:var(--am-charcoal);
+  --text-eyebrow:var(--am-mint);
+  --text-accent:var(--am-mint);
+  --text-link:var(--am-mint);
+  --text-link-hover:var(--am-ice);
+
+  /* Semantic lines */
+  --border-hairline:rgba(255,255,255,.12);
+  --border-hairline-light:rgba(48,49,49,.12);
+  --border-accent:var(--am-mint);
+
+  /* Interactive */
+  --action-primary-bg:var(--am-mint);
+  --action-primary-fg:var(--am-charcoal);
+  --action-primary-bg-hover:#CFE6DA;
+  --action-secondary-bg:transparent;
+  --action-secondary-fg:var(--am-white);
+  --action-secondary-border:rgba(255,255,255,.35);
+  --action-disabled-bg:rgba(255,255,255,.10);
+  --action-disabled-fg:rgba(255,255,255,.38);
+
+  /* Data / status — the source material carries no red/amber/green system.
+     Positive results are shown in mint, neutral figures in ice. */
+  --data-positive:var(--am-mint);
+  --data-neutral:var(--am-ice);
+}
