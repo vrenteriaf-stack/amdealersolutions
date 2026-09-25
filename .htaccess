@@ -1,0 +1,22 @@
+# AM Dealer Solutions: Apache rules for the IONOS webspace
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Retired WordPress URLs. One hop, straight to the final https URL.
+RewriteRule ^automotive-service-repair/?$ https://amdealersolutions.com/service-repair/ [R=301,L,NC]
+RewriteRule ^our-services/?$ https://amdealersolutions.com/services/ [R=301,L,NC]
+RewriteRule ^contact-us/?$ https://amdealersolutions.com/contact/ [R=301,L,NC]
+RewriteRule ^home/?$ https://amdealersolutions.com/ [R=301,L,NC]
+RewriteRule ^index\.php$ https://amdealersolutions.com/ [R=301,L,NC]
+
+# No About page yet. The homepage carries the company description, FAQ and
+# Organization markup. Point this at /about/ once the team bios are approved.
+RewriteRule ^about-us/?$ https://amdealersolutions.com/ [R=301,L,NC]
+
+# www to the bare domain
+RewriteCond %{HTTP_HOST} ^www\.amdealersolutions\.com$ [NC]
+RewriteRule ^(.*)$ https://amdealersolutions.com/$1 [R=301,L]
+</IfModule>
