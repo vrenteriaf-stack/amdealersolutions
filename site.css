@@ -805,3 +805,15 @@ p{text-wrap:pretty;}
   border:1px solid var(--hair);background:var(--card-bg);}
 .clientcard .body{font-size:var(--fs-body-sm);}
 @container page (max-width:900px){.clientrow{grid-template-columns:1fr}}
+
+/* At a glance: plain-text answer block under each hero */
+.glance{background:var(--am-charcoal-deep);}
+.glance .eyebrow{margin-bottom:var(--sp-5);}
+.glance-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sp-6);margin:0;}
+.glance-grid>div{border-top:1px solid var(--border-hairline);padding-top:var(--sp-4);}
+.glance-grid dt{font-size:13px;font-weight:var(--fw-semibold);letter-spacing:.14em;text-transform:uppercase;color:var(--am-ice);}
+.glance-grid dd{margin:12px 0 0;font-size:15px;line-height:1.7;color:var(--am-grey-300);text-wrap:pretty;}
+.glance-grid dd a{color:var(--am-mint);border-bottom:1px solid rgba(192,220,206,.45);}
+.glance-grid dd a:hover{color:var(--am-ice);border-color:var(--am-ice);}
+@container page (max-width:980px){.glance-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@container page (max-width:640px){.glance-grid{grid-template-columns:1fr;gap:var(--sp-5);}}

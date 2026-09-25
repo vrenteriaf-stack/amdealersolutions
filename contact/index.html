@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../support.js"></script>
+<script src="/analytics.js"></script>
 </head>
 <body>
 <x-dc>
@@ -86,7 +87,8 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml;charset=utf-
       "areaServed": { "@type": "Country", "name": "United States" },
       "sameAs": [
         "https://www.facebook.com/profile.php?id=61576321716074",
-        "https://www.instagram.com/amdealersolutions/"
+        "https://www.instagram.com/amdealersolutions/",
+        "https://www.linkedin.com/company/am-dealer-solutions/"
       ],
       "knowsAbout": ["Vehicle Listing Ads","Automotive SEO","Automotive SEM","Dealership CRM processes","OEM co-op advertising","RV dealership marketing","Powersports dealership marketing","Fixed operations marketing"]
     },
@@ -193,27 +195,27 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml;charset=utf-
             <i class="subdot" style="background:var(--am-mint)"></i>
             <span><span class="h4">All Case Studies</span><span class="sublede">Every dealership result</span></span>
           </a>
-          <a class="subitem" href="/case-studies/#bailey-toliver-ford">
+          <a class="subitem" href="/case-studies/bailey-toliver-ford/">
             <i class="subdot" style="background:var(--am-mint)"></i>
             <span><span class="h4">Bailey Toliver Ford</span><span class="sublede">Doubled sales, $8,000 waste removed</span></span>
           </a>
-          <a class="subitem" href="/case-studies/#toliver-chevy-gmc">
+          <a class="subitem" href="/case-studies/toliver-chevy-gmc/">
             <i class="subdot" style="background:var(--am-mint)"></i>
             <span><span class="h4">Toliver Chevrolet Buick GMC</span><span class="sublede">40 to over 100 units a month</span></span>
           </a>
-          <a class="subitem" href="/case-studies/#rightdrive">
+          <a class="subitem" href="/case-studies/rightdrive/">
             <i class="subdot" style="background:var(--am-mint)"></i>
             <span><span class="h4">RightDrive</span><span class="sublede">#1 in market within two years</span></span>
           </a>
-          <a class="subitem" href="/case-studies/#got-trucks">
+          <a class="subitem" href="/case-studies/got-trucks/">
             <i class="subdot" style="background:var(--am-mint)"></i>
             <span><span class="h4">Got Trucks</span><span class="sublede">25% growth, leaner operation</span></span>
           </a>
-          <a class="subitem" href="/case-studies/#bailey-toliver-rv">
+          <a class="subitem" href="/case-studies/bailey-toliver-rv/">
             <i class="subdot" style="background:var(--am-mint)"></i>
             <span><span class="h4">Bailey Toliver RV</span><span class="sublede">New RV rooftop, scaled lean</span></span>
           </a>
-          <a class="subitem" href="/case-studies/#rocky-mountain-supply">
+          <a class="subitem" href="/case-studies/rocky-mountain-supply/">
             <i class="subdot" style="background:var(--am-mint)"></i>
             <span><span class="h4">Rocky Mountain Supply</span><span class="sublede">Traffic up 400%, sales doubled</span></span>
           </a>
@@ -243,12 +245,12 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml;charset=utf-
       <a class="sheet-sub" href="/rv-dealers/">RV Dealers</a>
       <a class="sheet-sub" href="/powersport-dealers/" style="border-bottom:1px solid var(--border-hairline);padding-bottom:18px">Powersport Dealers</a>
       <a class="sheet-top" href="/case-studies/" style="border-bottom:0">Case Studies</a>
-      <a class="sheet-sub" href="/case-studies/#bailey-toliver-ford">Bailey Toliver Ford</a>
-      <a class="sheet-sub" href="/case-studies/#toliver-chevy-gmc">Toliver Chevrolet Buick GMC</a>
-      <a class="sheet-sub" href="/case-studies/#rightdrive">RightDrive</a>
-      <a class="sheet-sub" href="/case-studies/#got-trucks">Got Trucks</a>
-      <a class="sheet-sub" href="/case-studies/#bailey-toliver-rv">Bailey Toliver RV</a>
-      <a class="sheet-sub" href="/case-studies/#rocky-mountain-supply">Rocky Mountain Supply</a>
+      <a class="sheet-sub" href="/case-studies/bailey-toliver-ford/">Bailey Toliver Ford</a>
+      <a class="sheet-sub" href="/case-studies/toliver-chevy-gmc/">Toliver Chevrolet Buick GMC</a>
+      <a class="sheet-sub" href="/case-studies/rightdrive/">RightDrive</a>
+      <a class="sheet-sub" href="/case-studies/got-trucks/">Got Trucks</a>
+      <a class="sheet-sub" href="/case-studies/bailey-toliver-rv/">Bailey Toliver RV</a>
+      <a class="sheet-sub" href="/case-studies/rocky-mountain-supply/">Rocky Mountain Supply</a>
       <a class="sheet-top" href="/services/" style="border-bottom:0">Services</a>
       <div style="margin-top:18px"><x-import component-from-global-scope="AMDealerSolutionsDesignSystem_b94def.Button" size="lg" href="/contact/" hint-size="100%,52px" style="justify-content:center">Get a free consultation</x-import></div>
     </div>
@@ -362,6 +364,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml;charset=utf-
             </sc-if>
             <sc-if value="{{ failed }}" hint-placeholder-val="{{ false }}">
               <p class="err" role="alert" aria-live="assertive" style="font-size:13.5px">We could not send that just now. Please call (915) 519-6592 or email rudy@amdealersolutions.com.</p>
+              <p class="err" style="font-size:12px;opacity:.8">{{ failMsg }}</p>
             </sc-if>
           </form>
         </sc-if>
@@ -380,6 +383,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml;charset=utf-
         <div style="display:flex;gap:var(--sp-3);margin-top:var(--sp-5)">
           <a href="https://www.facebook.com/profile.php?id=61576321716074" class="soc" aria-label="AM Dealer Solutions on Facebook" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
           <a href="https://www.instagram.com/amdealersolutions/" class="soc" aria-label="AM Dealer Solutions on Instagram" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><path d="M17.5 6.5h.01"></path></svg></a>
+          <a href="https://www.linkedin.com/company/am-dealer-solutions/" class="soc" aria-label="AM Dealer Solutions on LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
         </div>
       </div>
 
@@ -425,7 +429,7 @@ class Component extends DCLogic {
   }
 
   state = {
-    sent: false, touched: false, sending: false, failed: false,
+    sent: false, touched: false, sending: false, failed: false, failMsg: '',
     types: [],
     name: '', dealership: '', email: '', phone: '', spend: '', challenge: ''
   };
@@ -480,12 +484,16 @@ class Component extends DCLogic {
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(payload)
     })
-      .then((r) => { if (!r.ok) throw new Error('bad status ' + r.status); return r.json(); })
-      .then(() => {
+      .then((r) => r.json().catch(() => ({})).then((d) => ({ ok: r.ok, status: r.status, d })))
+      .then(({ ok, status, d }) => {
+        const good = ok && String(d.success) === 'true';
+        console.log('[AMDS form] status', status, d);
+        if (!good) { this.setState({ sending: false, failed: true, failMsg: d.message || ('Request failed (' + status + ')') }); return; }
         this.setState({ sent: true, sending: false });
+        if (typeof window !== 'undefined' && window.amdsTrack) window.amdsTrack('generate_lead', { form: 'consultation' });
         if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
       })
-      .catch(() => { this.setState({ sending: false, failed: true }); });
+      .catch((e) => { this.setState({ sending: false, failed: true, failMsg: String(e && e.message || e) }); });
   };
 
   renderVals() {
@@ -504,6 +512,7 @@ class Component extends DCLogic {
       notSent: !s.sent,
       sending: s.sending,
       failed: s.failed,
+      failMsg: s.failMsg || '',
       submitLabel: s.sending ? 'Sending…' : 'Book my consulting call',
       hasErrors: s.touched && Object.keys(err).some(k => err[k]),
       v_name: s.name, v_dealership: s.dealership, v_email: s.email,
